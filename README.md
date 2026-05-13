@@ -69,3 +69,10 @@ Initial CLI help samples in this repo were captured from **RNS 1.2.5** on **Darw
 ## License
 
 Text and samples in this repository are licensed under the [MIT License](LICENSE) unless individual files state otherwise.
+
+## Publishing on GitHub
+
+1. Create a new **empty** repository on GitHub (no README/license template, or you will need to reconcile histories).
+2. Add the remote and push: `git remote add origin https://github.com/<you>/<repo>.git` then `git push -u origin main`.
+3. In the repo **Settings → General**, optionally enable **Private vulnerability reporting** (aligns with [SECURITY.md](SECURITY.md)).
+4. Review **Settings → Actions** if you add workflows later; this repo ships without CI by default.
