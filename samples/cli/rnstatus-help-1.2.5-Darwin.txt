@@ -1,0 +1,38 @@
+# Captured: RNS 1.2.5 (rnstatus 1.2.5) on Darwin — regenerate on your OS after upgrade
+# Command: rnstatus --help
+
+usage: rnstatus [-h] [--config CONFIG] [--version] [-a] [-A] [-P] [-l] [-B]
+                [-t] [-s SORT] [-r] [-j] [-R hash] [-i path] [-w seconds] [-d]
+                [-D] [-m] [-I seconds] [-v]
+                [filter]
+
+Reticulum Network Stack Status
+
+positional arguments:
+  filter                only display interfaces with names including filter
+
+options:
+  -h, --help            show this help message and exit
+  --config CONFIG       path to alternative Reticulum config directory
+  --version             show program's version number and exit
+  -a, --all             show all interfaces
+  -A, --announce-stats  show announce stats
+  -P, --pr-stats        show path request stats
+  -l, --link-stats      show link stats
+  -B, --burst           only show interfaces with active bursts
+  -t, --totals          display traffic totals
+  -s, --sort SORT       sort interfaces by [rate, traffic, rx, tx, rxs, txs,
+                        announces, arx, atx, prx, ptx, held]
+  -r, --reverse         reverse sorting
+  -j, --json            output in JSON format
+  -R hash               transport identity hash of remote instance to get
+                        status from
+  -i path               path to identity used for remote management
+  -w seconds            timeout before giving up on remote queries
+  -d, --discovered      list discovered interfaces
+  -D                    show details and config entries for discovered
+                        interfaces
+  -m, --monitor         continuously monitor status
+  -I, --monitor-interval seconds
+                        refresh interval for monitor mode (default: 1)
+  -v, --verbose

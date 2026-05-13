@@ -1,0 +1,8 @@
+# Snippet from rnsd --exampleconfig (RNS 1.2.5) — TCP client interface
+# Not a complete config file; merge into your [interfaces] section.
+
+  [[TCP Client Interface]]
+    type = TCPClientInterface
+    enabled = no
+    target_host = 127.0.0.1
+    target_port = 4242

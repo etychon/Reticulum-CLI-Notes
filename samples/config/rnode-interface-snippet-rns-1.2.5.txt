@@ -1,0 +1,10 @@
+# Snippet from rnsd --exampleconfig (RNS 1.2.5) — RNode LoRa interface
+# Not a complete config file. Verify ALL radio parameters for your hardware and local law.
+
+  [[RNode LoRa Interface]]
+    type = RNodeInterface
+    enabled = no
+    port = /dev/ttyUSB0
+    frequency = 867200000
+    bandwidth = 125000
+    txpower = 7

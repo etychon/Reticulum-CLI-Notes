@@ -1,0 +1,14 @@
+# Example only (ephemeral test identity; do not reuse). RNS 1.2.5.
+# Commands:
+#   rnid --generate /path/to/node.identity -v
+#   rnid -i /path/to/node.identity -p
+#   rnid -i /path/to/node.identity -H rns.id
+
+New identity <bd4e3a83b1c08c69beaea124559f33fa> written to /path/to/node.identity
+Loaded Identity <bd4e3a83b1c08c69beaea124559f33fa> from /path/to/node.identity
+Identity Hash : <bd4e3a83b1c08c69beaea124559f33fa>
+Public Key    : 64cd71d0181ba62be64108991920e1ec17b353837067923cf2e9148b42b1e86ca13b4dd78d52fe190eb361923ac76c8adb8f252852ba2e464d89d5039e433450
+Private Key   : Hidden
+Loaded Identity <bd4e3a83b1c08c69beaea124559f33fa> from /path/to/node.identity
+The rns.id destination for this Identity is <24dba6edfa673add2d793c738cd81e34>
+The full destination specifier is <rns.id.bd4e3a83b1c08c69beaea124559f33fa:24dba6edfa673add2d793c738cd81e34>

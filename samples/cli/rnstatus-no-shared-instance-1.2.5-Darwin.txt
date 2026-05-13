@@ -1,0 +1,5 @@
+# Captured: RNS 1.2.5 on Darwin
+# Command: rnstatus (no rnsd / shared instance running)
+# Exit code: 1
+
+No shared RNS instance available to get status from

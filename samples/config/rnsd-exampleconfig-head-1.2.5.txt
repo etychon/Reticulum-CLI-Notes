@@ -1,0 +1,103 @@
+# Captured: RNS 1.2.5 on Darwin
+# Command: rnsd --exampleconfig | head -100
+# Full example is large; this is the opening [reticulum] section only.
+
+# This is an example Reticulum config file.
+# You should probably edit it to include any additional,
+# interfaces and settings you might need.
+
+[reticulum]
+
+# If you enable Transport, your system will route traffic
+# for other peers, pass announces and serve path requests.
+# This should be done for systems that are suited to act
+# as transport nodes, ie. if they are stationary and
+# always-on. This directive is optional and can be removed
+# for brevity.
+
+enable_transport = No
+
+
+# By default, the first program to launch the Reticulum
+# Network Stack will create a shared instance, that other
+# programs can communicate with. Only the shared instance
+# opens all the configured interfaces directly, and other
+# local programs communicate with the shared instance over
+# a local socket. This is completely transparent to the
+# user, and should generally be turned on. This directive
+# is optional and can be removed for brevity.
+
+share_instance = Yes
+
+
+# If you want to run multiple *different* shared instances
+# on the same system, you will need to specify different
+# instance names for each. On platforms supporting domain
+# sockets, this can be done with the instance_name option:
+
+instance_name = default
+
+# Some platforms don't support domain sockets, and if that
+# is the case, you can isolate different instances by
+# specifying a unique set of ports for each:
+
+# shared_instance_port = 37428
+# instance_control_port = 37429
+
+
+# If you want to explicitly use TCP for shared instance
+# communication, instead of domain sockets, this is also
+# possible, by using the following option:
+
+# shared_instance_type = tcp
+
+
+# On systems where running instances may not have access
+# to the same shared Reticulum configuration directory,
+# it is still possible to allow full interactivity for
+# running instances, by manually specifying a shared RPC
+# key. In almost all cases, this option is not needed, but
+# it can be useful on operating systems such as Android.
+# The key must be specified as bytes in hexadecimal.
+
+# rpc_key = e5c032d3ec4e64a6aca9927ba8ab73336780f6d71790
+
+
+# It is possible to allow remote management of Reticulum
+# systems using the various built-in utilities, such as
+# rnstatus and rnpath. You will need to specify one or
+# more Reticulum Identity hashes for authenticating the
+# queries from client programs. For this purpose, you can
+# use existing identity files, or generate new ones with
+# the rnid utility.
+
+# enable_remote_management = yes
+# remote_management_allowed = 9fb6d773498fb3feda407ed8ef2c3229, 2d882c5586e548d79b5af27bca1776dc
+
+
+# For easier management, discovery and configuration of
+# networks with many individual transport instances,
+# you can specify a network identity to be used across
+# a set of instances. If sending interface discovery
+# announces, these will all be signed by the specified
+# network identity, and other nodes discovering your
+# interfaces will be able to identify that they belong
+# to the same network, even though they exist on different
+# transport nodes.
+
+# network_identity = ~/.reticulum/storage/identity/network
+
+
+# You can configure whether Reticulum should discover
+# available interfaces from other Transport Instances over
+# the network. If this option is enabled, Reticulum will
+# collect interface information discovered from the network.
+
+# discover_interfaces = No
+
+
+# If you only want to discover interfaces from specific
+# networks, you can provide a list of network identities
+# from which to discover interfaces. If this option is not
+# provided, interfaces will be discovered from all transport
+# instances on all connected networks.

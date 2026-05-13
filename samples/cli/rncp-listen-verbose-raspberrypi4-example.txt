@@ -1,0 +1,9 @@
+# Example: rncp listener on Raspberry Pi 4 (verbose). Contributed operator log.
+# Prompt anonymised for publication; hashes illustrative (replace with your own captures).
+# Command: rncp -l -v -i .reticulum/storage/identities/default --no-auth
+# Note: --no-auth is for lab use only; prefer -a / ~/.rncp/allowed_identities in production.
+
+operator@raspberrypi4:~ $ rncp -l -v -i .reticulum/storage/identities/default --no-auth
+rncp listening on <5688e95e2d84f3f86552384ca64d3302>
+Starting resource transfer <a9a99454aaae521b9d158f6778b60dc2e47b8f0036ac279a9af970e7924d5852> from <6fb07605ab42402ee6a6491ca461c35f>
+<a9a99454aaae521b9d158f6778b60dc2e47b8f0036ac279a9af970e7924d5852/32bce34cc626f206ce6f863ab3bdec4c> completed

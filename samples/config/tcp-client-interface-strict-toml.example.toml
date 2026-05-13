@@ -1,0 +1,10 @@
+# Strict TOML style (illustrative) — for alternate implementations
+# NOT validated against rnsd 1.2.5; see FOSDEM 2026 deck "Config Problem" slide.
+# Replace target_host/target_port with your lab server.
+
+[[interfaces]]
+name = "Example TCP Client"
+type = "TCPClientInterface"
+interface_enabled = true
+target_host = "127.0.0.1"
+target_port = 4242
