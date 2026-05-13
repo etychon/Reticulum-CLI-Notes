@@ -28,7 +28,7 @@ Licensing and upstream distribution channels have evolved. Some community builds
 | Path | Contents |
 |------|----------|
 | [docs/concepts/](docs/concepts/) | Behaviour notes (destinations, announces, …) |
-| [docs/guides/](docs/guides/) | End-to-end operator flows (new node, …) |
+| [docs/guides/](docs/guides/) | End-to-end operator flows (new node, mesh CLI examples, …) |
 | [docs/linux/](docs/linux/) | Serial/USB RNode, permissions, systemd hints |
 | [docs/cli/](docs/cli/) | One page per CLI tool, linked to `samples/cli/` |
 | [docs/config/](docs/config/) | Config paths, example config, interface recipes, TOML notes |
@@ -55,6 +55,7 @@ Initial CLI help samples in this repo were captured from **RNS 1.2.5** on **Darw
 3. If you use USB RNode: [docs/linux/rnode-usb.md](docs/linux/rnode-usb.md).
 4. Command reference: [docs/cli/](docs/cli/) (for example [rnsd](docs/cli/rnsd.md), [rnstatus](docs/cli/rnstatus.md), [rnid](docs/cli/rnid.md), [rncp](docs/cli/rncp.md)).
 5. How listening relates to announces: [docs/concepts/destinations-announces-listeners.md](docs/concepts/destinations-announces-listeners.md).
+6. LoRa lab walk-through (`rnid`, `rnpath`, `rnprobe`, `rnsh`): [docs/guides/mesh-cli-examples.md](docs/guides/mesh-cli-examples.md).
 
 ## See also
 

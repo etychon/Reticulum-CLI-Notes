@@ -52,5 +52,6 @@ rnid -i ~/.reticulum/storage/identities/node.identity -a
 
 ## See also
 
+- [Mesh CLI worked examples](../guides/mesh-cli-examples.md) (`rnid -p` and peer hash table)
 - [New node setup](../guides/new-node-setup.md)
 - [Reticulum manual](https://reticulum.network/manual/index.html)

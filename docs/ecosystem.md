@@ -7,6 +7,7 @@ This page lists **where to look next**, not full tutorials. It merges themes fro
 ## Operator guides in this repo
 
 - [New node: initial configuration and services](guides/new-node-setup.md) — install, identity, `rnsd`, probes, `rnsh` / `rnx`, Nomad Network, systemd template, troubleshooting.
+- [Mesh CLI worked examples](guides/mesh-cli-examples.md) — LoRa lab: `rnid -p`, peer hash table, `rnpath`, `rnprobe`, `rnsh` (with sample transcript).
 
 ## Core stack and spec
 

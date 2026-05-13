@@ -36,6 +36,7 @@ rnsh <destination_hash> -- ls -la /tmp
 
 ## See also
 
+- [Mesh CLI worked examples](../guides/mesh-cli-examples.md) (verbose listen + destination hash)
 - [New node setup](../guides/new-node-setup.md)
 - Upstream `rnsh` documentation / wiki (verify current install package name)
 - [Reticulum manual](https://reticulum.network/manual/index.html)

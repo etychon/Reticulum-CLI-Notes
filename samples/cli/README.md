@@ -14,6 +14,10 @@ For non-`--help` output, describe the scenario:
 
 `rnstatus-no-shared-instance-1.2.5-Linux.txt`
 
+For multi-command lab logs (identity, paths, probe, `rnsh`), use descriptive names such as:
+
+`mesh-lab-rnid-rnpath-rnprobe-rnsh-transcript.txt`
+
 ## Regeneration
 
 From a venv with `rns` installed:

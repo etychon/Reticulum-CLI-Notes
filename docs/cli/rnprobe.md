@@ -29,5 +29,6 @@ Capture a real probe transcript separately; probes generate traffic—use only o
 
 ## See also
 
+- [Mesh CLI worked examples](../guides/mesh-cli-examples.md) (`rnprobe rnstransport.probe <hash>`, RSSI/SNR sample)
 - [Reticulum manual](https://reticulum.network/manual/index.html)
 - [n00q — Reticulum Notes](https://n00q.net/blog/reticulum-notes/)

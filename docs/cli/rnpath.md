@@ -36,5 +36,6 @@ Add a redacted `rnpath -t -j` capture once you have a live network.
 
 ## See also
 
+- [Mesh CLI worked examples](../guides/mesh-cli-examples.md) (`rnpath -t` and single-destination path)
 - [Reticulum manual](https://reticulum.network/manual/using.html)
 - [FOSDEM 2026 slides](https://fosdem.org/2026/events/attachments/9NCWUR-reticulum_community_meetup_implementations_migration_and_future/slides/267005/reticulum_dimz1j8.pdf) (tooling / community daemons)

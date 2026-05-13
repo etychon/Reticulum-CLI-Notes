@@ -15,6 +15,7 @@ A running shared instance (typically from `rnsd` or another program that initial
 ```bash
 rnstatus
 rnstatus -a
+rnstatus -v
 rnstatus -j | jq .
 ```
 
@@ -35,6 +36,7 @@ Run `rnstatus` with the same `--config` path as `rnsd` if you use a non-default 
 
 ## See also
 
+- [Mesh CLI worked examples](../guides/mesh-cli-examples.md) (finding probe responder hashes with `rnstatus -v` on the peer)
 - [rnsd.md](rnsd.md)
 - [Reticulum manual — Using Reticulum on your system](https://reticulum.network/manual/using.html)
 - [FOSDEM 2026 slides — remote management / tooling](https://fosdem.org/2026/events/attachments/9NCWUR-reticulum_community_meetup_implementations_migration_and_future/slides/267005/reticulum_dimz1j8.pdf)

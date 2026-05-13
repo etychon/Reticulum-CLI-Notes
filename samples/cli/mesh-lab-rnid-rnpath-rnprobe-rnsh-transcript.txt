@@ -1,0 +1,54 @@
+# Worked examples: identity, paths, probe, rnsh (Raspberry Pi + LoRa lab).
+# Prompts use "operator@" and /home/operator/ for publication; replace with your user.
+# Peer names and hashes are from one contributor lab — use your own hashes in production.
+
+# --- Show identity ---
+
+operator@raspberrypi4:~ $ rnid -i .reticulum/storage/identities/default -p
+[2026-05-13 20:29:04] Loaded Identity <15a4005a03362483af44b20f9bd83e3d> from .reticulum/storage/identities/default
+[2026-05-13 20:29:04] Public Key  : f3e29f2c2a31efa1677d9a609cb8b39d63eb18c00cdb5b0ec357bb734a63a8258c22d2cb4291e0dd6cd2ddb8f8e7023f8f1367e54c514f09c6f0dd4066d740fd
+[2026-05-13 20:29:04] Private Key : Hidden
+
+# --- Peer hash reference (same lab) ---
+
+# Emmanuel's
+#   identity: 15a4005a03362483af44b20f9bd83e3d
+#   probe: 8ee86c7476994f966ad0e622eff90e09
+#   rnsh: 9363366a60acd789745f58a7563621cb
+#   nomad Primary Identity: d63f7973d0175975076b446fc08f07a9
+#   LXMF delivery hash: b2a531452647b94596bf673f59f7cbec
+
+# Chris' identity:
+#   identity: 9839c928768eca38683eb556e72e854e
+#   rnsh: 5e2b1e3934cc6af561124087ef6faaca
+#   probe responder: 28a479e075763f02c03522a5f95b7a08
+
+# --- Check path table ---
+
+operator@raspberrypi4:~ $ rnpath -t
+<c8c00ff5b04e3a19579855b5584ca0e1> is 1 hop  away via <4723257372e013f86c176f941742dce2> on RNodeInterface[RNode LoRa] expires 2026-05-20 20:23:33
+
+# --- Ping / probe (use probe responder from peer; here Chris') ---
+
+# Short form (name + hash):
+rnprobe rnstransport.probe 28a479e075763f02c03522a5f95b7a08
+
+operator@raspberrypi4:~ $ rnprobe rnstransport.probe 28a479e075763f02c03522a5f95b7a08 -n 10
+Sent probe 1 (16 bytes) to <28a479e075763f02c03522a5f95b7a08>
+Valid reply from <28a479e075763f02c03522a5f95b7a08>
+Round-trip time is 930.411 milliseconds over 1 hop [RSSI -26 dBm] [SNR 12.75 dB] [Link Quality 100.0%]
+
+# --- rnsh listen (lab: accept all; do not use --no-auth outside closed tests) ---
+
+rnsh -l -v -i .reticulum/storage/identities/default  --no-auth
+
+[2026-05-13 21:12:25] [Verbose]  Configuration loaded from /home/operator/.reticulum/config
+[2026-05-13 21:12:25] [Verbose]  Loaded 93 known destination from storage in 1ms and 985.79µs
+[2026-05-13 21:12:25] [Verbose]  Loaded Transport Identity from storage
+[2026-05-13 21:12:25] [Notice]   rnsh listening for commands on <9363366a60acd789745f58a7563621cb>
+[2026-05-13 21:12:25] [Info]     Using /bin/bash for default command.
+
+# --- Path to a single destination (created / owned by an app on the peer) ---
+
+operator@raspberrypi4:~ $ rnpath 28a479e075763f02c03522a5f95b7a08
+Path found, destination <28a479e075763f02c03522a5f95b7a08> is 1 hop away via <28a479e075763f02c03522a5f95b7a08> on RNodeInterface[RNode LoRa]

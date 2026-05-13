@@ -229,6 +229,7 @@ Use `--config` in `ExecStart=` if your config root is not the default. Transport
 
 - [README — quick path](../../README.md)
 - [Destinations, listeners, and announces](../concepts/destinations-announces-listeners.md)
+- [Mesh CLI worked examples (LoRa lab)](mesh-cli-examples.md)
 - [rnid.md](../cli/rnid.md), [rnsd.md](../cli/rnsd.md), [rnstatus.md](../cli/rnstatus.md), [rnprobe.md](../cli/rnprobe.md), [rnsh.md](../cli/rnsh.md), [rnx.md](../cli/rnx.md), [rncp.md](../cli/rncp.md)
 - [Reticulum manual — Using Reticulum on your system](https://reticulum.network/manual/using.html)
 - [n00q Reticulum Notes](https://n00q.net/blog/reticulum-notes/)
