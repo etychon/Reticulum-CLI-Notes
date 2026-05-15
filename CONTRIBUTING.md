@@ -20,6 +20,12 @@ Thank you for helping improve these operator notes.
 - Match the existing Markdown structure in nearby files.
 - Prefer linking to the official manual over copying large excerpts.
 
+## Diagrams
+
+- Add or update **Mermaid** in the page that owns the concept; see [docs/concepts/diagrams-style.md](docs/concepts/diagrams-style.md).
+- Register new figures in [docs/concepts/visual-index.md](docs/concepts/visual-index.md).
+- Optional SVG export: `npx --yes @mermaid-js/mermaid-cli -i docs/assets/diagrams/source/<name>.mmd -o docs/assets/diagrams/<name>.svg`
+
 ## Licensing
 
 By contributing, you agree your contributions are licensed under the same terms as this repository ([LICENSE](LICENSE)).

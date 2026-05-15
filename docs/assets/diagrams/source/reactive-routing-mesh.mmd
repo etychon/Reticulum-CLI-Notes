@@ -1,0 +1,9 @@
+flowchart LR
+  NodeA[NodeA instance]
+  TransportMid[TransportMid]
+  NodeB[NodeB instance]
+  NodeA -->|"LoRa 1 hop"| TransportMid
+  TransportMid -->|"LoRa 1 hop"| NodeB
+  NodeA -.- NoteA["path table: next hop only"]
+  TransportMid -.- NoteM["path table: next hop only"]
+  NodeB -.- NoteB["path table: next hop only"]

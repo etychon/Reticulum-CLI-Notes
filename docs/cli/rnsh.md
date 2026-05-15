@@ -6,6 +6,20 @@
 
 `rnsh` is the **Reticulum remote shell** utility: connect to a peer destination or listen in server mode for incoming shell sessions. It is listed among the “command-line nerd tools” in [n00q Reticulum Notes](https://n00q.net/blog/reticulum-notes/).
 
+**Diagrams:** [visual index](../concepts/visual-index.md)
+
+```mermaid
+flowchart LR
+  Listen[rnsh -l registers rnsh destination]
+  Hash[rnsh listener hash]
+  Client[peer connects to that hash]
+  NotProbe[not rnstransport.probe]
+  Listen --> Hash --> Client
+  Hash -.- NotProbe
+```
+
+**Figure: rnsh uses its own destination hash, not the transport probe**
+
 ## Prerequisites
 
 - Identities and destination hashes configured for your use case.

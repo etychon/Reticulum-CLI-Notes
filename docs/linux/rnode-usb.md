@@ -2,6 +2,19 @@
 
 **Captured / scope:** Operator checklist distilled from [n00q: Reticulum Notes](https://n00q.net/blog/reticulum-notes/) (RNode tips) and common Linux serial practice. Verify against your board and distro.
 
+**Diagrams:** [visual index](../concepts/visual-index.md)
+
+```mermaid
+flowchart LR
+  User[operator user]
+  Dev[/dev/ttyACM0 or by-id path]
+  Tools[rnodeconf and rnsd]
+  User -->|read write permission| Dev
+  Tools --> Dev
+```
+
+**Figure: USB permissions gate serial access**
+
 ## Find the device
 
 ```bash

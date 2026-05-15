@@ -6,6 +6,21 @@
 
 `rnid` manages **Reticulum identities**: generate, import/export keys, print hashes, **announce** destinations, and sign/encrypt files.
 
+**Diagrams:** [visual index](../concepts/visual-index.md)
+
+```mermaid
+flowchart TB
+  Identity[identity file one keypair]
+  P[rnid -p identity hash]
+  H[rnid -H aspect app hash]
+  A[rnid -a announce on mesh]
+  Identity --> P
+  Identity --> H
+  Identity --> A
+```
+
+**Figure: one identity, many destination hashes via aspects**
+
 ## Prerequisites
 
 - For network operations (`-a`, `-R`), a running shared RNS instance (`rnsd` or another program that initialized the stack with the same `--config`).

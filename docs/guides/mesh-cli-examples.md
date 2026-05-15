@@ -4,6 +4,28 @@
 
 This page ties together **`rnid`**, **`rnpath`**, **`rnprobe`**, and **`rnsh`** the way you use them on air: show local identity, keep a **cheat sheet** of peer aspects, check the **path table**, **probe** a responder, start **`rnsh`**, then confirm **path to one app destination**.
 
+**Diagrams:** [visual index](../concepts/visual-index.md)
+
+```mermaid
+sequenceDiagram
+  participant Op as Operator
+  participant CLI as CLI tools
+  participant Mesh as Mesh via rnsd
+
+  Op->>CLI: rnid -p
+  CLI->>Op: local identity hash
+  Op->>CLI: rnpath -t
+  CLI->>Mesh: show learned paths
+  Mesh->>Op: path table
+  Op->>CLI: rnprobe rnstransport.probe hash
+  CLI->>Mesh: path request then probe
+  Mesh->>Op: RTT and RF stats
+  Op->>CLI: rnsh -l
+  CLI->>Mesh: listen on rnsh hash
+```
+
+**Figure: LoRa lab CLI sequence** — order matches the sections below.
+
 ## Show identity (`rnid -p`)
 
 ```bash
@@ -35,6 +57,24 @@ Use `rnid -H …` on each peer when you are unsure of the aspect string; this ta
 | | rnsh | `5e2b1e3934cc6af561124087ef6faaca` |
 | | probe responder | `28a479e075763f02c03522a5f95b7a08` |
 
+```mermaid
+flowchart TB
+  subgraph emmanuel [Emmanuel one node]
+    EId[identity hash]
+    EProbe[probe hash]
+    ESh[rnsh hash]
+    ENomad[Nomad hash]
+    ELxmf[LXMF hash]
+  end
+  subgraph chris [Chris one node]
+    CId[identity hash]
+    CSh[rnsh hash]
+    CProbe[probe responder hash]
+  end
+```
+
+**Figure: lab cheat sheet as destination boxes** — each row in the table is a **different** destination on the same physical node; see [destinations-announces-listeners.md](../concepts/destinations-announces-listeners.md).
+
 ## Path table (`rnpath -t`)
 
 Shows destinations the stack knows about and next-hop / interface (here **RNode LoRa**):
@@ -47,11 +87,25 @@ rnpath -t
 <c8c00ff5b04e3a19579855b5584ca0e1> is 1 hop  away via <4723257372e013f86c176f941742dce2> on RNodeInterface[RNode LoRa] expires 2026-05-20 20:23:33
 ```
 
-See [rnpath.md](../cli/rnpath.md).
+The table is **not** a full map of the mesh—only destinations your node has learned paths to (announces and on-demand path requests). See [routing-paths-and-announces.md](../concepts/routing-paths-and-announces.md) and [rnpath.md](../cli/rnpath.md).
 
 ## Probe a responder (`rnprobe`)
 
 `rnprobe` always needs **two** positional arguments: a **full destination name** in dotted notation, and a **destination hash** (see `rnprobe --help`). The usual connectivity test uses the built-in transport probe name:
+
+```mermaid
+flowchart LR
+  Cmd["rnprobe rnstransport.probe HASH"]
+  Name[full name builds OUT destination]
+  Hash[hash drives path lookup]
+  Path[Transport.request_path]
+  Probe[probe packet]
+  Cmd --> Name
+  Cmd --> Hash
+  Hash --> Path --> Probe
+```
+
+**Figure: two CLI arguments, two roles**
 
 ```bash
 rnprobe rnstransport.probe 28a479e075763f02c03522a5f95b7a08
@@ -158,6 +212,7 @@ Path found, destination <28a479e075763f02c03522a5f95b7a08> is 1 hop away via <28
 
 ## See also
 
+- [Routing: paths, announces, and reactive reachability](../concepts/routing-paths-and-announces.md)
 - [New node setup](new-node-setup.md)
 - [Destinations, listeners, and announces](../concepts/destinations-announces-listeners.md)
 - [samples/cli/mesh-lab-rnid-rnpath-rnprobe-rnsh-transcript.txt](../../samples/cli/mesh-lab-rnid-rnpath-rnprobe-rnsh-transcript.txt)

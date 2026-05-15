@@ -1,0 +1,18 @@
+flowchart TB
+  subgraph oneNode [Single physical node]
+    Identity[Identity keypair]
+    subgraph apps [Applications on rnsd]
+      AppId["app rns.id"]
+      AppProbe["app rnstransport.probe"]
+      AppSh["app rnsh"]
+      AppLxmf["app lxmf delivery"]
+    end
+    Identity --> AppId
+    Identity --> AppSh
+    Identity --> AppLxmf
+    TransportLayer[Transport instance] --> AppProbe
+  end
+  AppId --> HashId["destination hash D1"]
+  AppProbe --> HashProbe["destination hash D2"]
+  AppSh --> HashSh["destination hash D3"]
+  AppLxmf --> HashLxmf["destination hash D4"]

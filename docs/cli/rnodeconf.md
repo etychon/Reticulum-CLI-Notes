@@ -6,6 +6,20 @@
 
 `rnodeconf` configures RNode hardware: firmware **autoinstall**, **update**, **flash**, Bluetooth/WiFi/display options, and on-device LoRa parameters. Use it **before** relying on `RNodeInterface` in `rnsd`.
 
+**Diagrams:** [visual index](../concepts/visual-index.md)
+
+```mermaid
+flowchart LR
+  Host[Linux host]
+  Rnodeconf[rnodeconf USB serial]
+  RNode[RNode firmware]
+  Rnsd[rnsd RNodeInterface later]
+  Host --> Rnodeconf --> RNode
+  RNode --> Rnsd
+```
+
+**Figure: configure hardware before rnsd opens the port**
+
 ## Prerequisites
 
 - USB serial access to the board ([rnode-usb.md](../linux/rnode-usb.md)).

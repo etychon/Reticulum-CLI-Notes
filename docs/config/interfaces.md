@@ -2,6 +2,25 @@
 
 **Legal and safety:** RF examples below are **illustrative only**. You are responsible for lawful frequency, power, bandwidth, and antenna use. Event-specific hosts (for example FOSDEM demo infrastructure) may not be reachable year-round.
 
+**Diagrams:** [visual index](../concepts/visual-index.md)
+
+```mermaid
+flowchart TB
+  Rnsd[rnsd Reticulum instance]
+  TCP[TCP client or server interface]
+  UDP[UDP interface]
+  RNode[RNode LoRa interface]
+  Mesh[peers on wire or RF]
+  Rnsd --> TCP
+  Rnsd --> UDP
+  Rnsd --> RNode
+  TCP --> Mesh
+  UDP --> Mesh
+  RNode --> Mesh
+```
+
+**Figure: multiple interface blocks, one stack**
+
 ## Python RNS (`rnsd --exampleconfig` style, 1.2.5)
 
 Upstream’s generated example uses **configobj** syntax: `Yes` / `No`, nested `[[Interface Name]]` sections, and keys such as `enabled = no` on interfaces in the sample output.
@@ -28,5 +47,6 @@ If you use USB serial, see [rnode-usb.md](../linux/rnode-usb.md). For LoRa RNode
 
 ## See also
 
+- [Visual index](../concepts/visual-index.md)
 - [Reticulum manual — Configuring interfaces](https://reticulum.network/manual/interfaces.html)
 - [n00q — RNode on Linux](https://n00q.net/blog/reticulum-notes/)

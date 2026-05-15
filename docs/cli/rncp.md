@@ -6,6 +6,18 @@
 
 `rncp` is the **Reticulum file transfer** utility: send a file to a destination hash, **listen** for incoming transfers, or **fetch** from a remote listener (when enabled).
 
+**Diagrams:** [visual index](../concepts/visual-index.md)
+
+```mermaid
+flowchart LR
+  Listen[rncp -l listener destination]
+  Send[sender targets that hash]
+  Resource[Resource over link or packets]
+  Listen --> Send --> Resource
+```
+
+**Figure: file transfer targets the rncp listener hash**
+
 ## Prerequisites
 
 - `rnsd` (or another shared RNS instance) with working interfaces.

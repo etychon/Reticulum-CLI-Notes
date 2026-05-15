@@ -6,6 +6,21 @@
 
 `rnsd` runs the Reticulum Network Stack as a daemon (foreground or service mode). Other local programs typically attach to the **shared instance** it creates.
 
+**Diagrams:** [visual index](../concepts/visual-index.md)
+
+```mermaid
+flowchart TB
+  Rnsd[rnsd daemon]
+  Shared[shared RNS instance]
+  Ifaces[interfaces LoRa TCP UDP]
+  Clients[rnstatus rnpath rnprobe rnsh rncp apps]
+  Rnsd --> Shared
+  Shared --> Ifaces
+  Clients --> Shared
+```
+
+**Figure: rnsd owns interfaces; CLI tools attach to the shared instance**
+
 ## Prerequisites
 
 - A valid Reticulum config directory (see [paths-and-example.md](../config/paths-and-example.md)).

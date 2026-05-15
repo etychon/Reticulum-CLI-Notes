@@ -27,7 +27,8 @@ Licensing and upstream distribution channels have evolved. Some community builds
 
 | Path | Contents |
 |------|----------|
-| [docs/concepts/](docs/concepts/) | Behaviour notes (destinations, announces, …) |
+| [docs/concepts/](docs/concepts/) | Behaviour notes, [visual index](docs/concepts/visual-index.md), [diagram style](docs/concepts/diagrams-style.md) |
+| [docs/assets/diagrams/](docs/assets/diagrams/) | Optional SVG exports for dense figures |
 | [docs/guides/](docs/guides/) | End-to-end operator flows (new node, mesh CLI examples, …) |
 | [docs/linux/](docs/linux/) | Serial/USB RNode, [LoRa RNode install](docs/linux/rnode-lora-install.md), permissions, systemd hints |
 | [docs/cli/](docs/cli/) | One page per CLI tool, linked to `samples/cli/` |
@@ -54,8 +55,10 @@ Initial CLI help samples in this repo were captured from **RNS 1.2.5** on **Darw
 2. Read [docs/config/paths-and-example.md](docs/config/paths-and-example.md) if you need config search order and `rnsd --exampleconfig`.
 3. If you use USB LoRa RNode: [docs/linux/rnode-lora-install.md](docs/linux/rnode-lora-install.md) (firmware + config); USB permissions: [docs/linux/rnode-usb.md](docs/linux/rnode-usb.md).
 4. Command reference: [docs/cli/](docs/cli/) (for example [rnsd](docs/cli/rnsd.md), [rnstatus](docs/cli/rnstatus.md), [rnid](docs/cli/rnid.md), [rncp](docs/cli/rncp.md)).
-5. How listening relates to announces: [docs/concepts/destinations-announces-listeners.md](docs/concepts/destinations-announces-listeners.md).
-6. LoRa lab walk-through (`rnid`, `rnpath`, `rnprobe`, `rnsh`): [docs/guides/mesh-cli-examples.md](docs/guides/mesh-cli-examples.md).
+5. **Visual learners:** [docs/concepts/visual-index.md](docs/concepts/visual-index.md) (diagrams for addresses, routing, stack, CLI).
+6. How routing works (reactive paths vs announces): [docs/concepts/routing-paths-and-announces.md](docs/concepts/routing-paths-and-announces.md).
+7. How listening relates to announces: [docs/concepts/destinations-announces-listeners.md](docs/concepts/destinations-announces-listeners.md).
+8. LoRa lab walk-through (`rnid`, `rnpath`, `rnprobe`, `rnsh`): [docs/guides/mesh-cli-examples.md](docs/guides/mesh-cli-examples.md).
 
 ## See also
 

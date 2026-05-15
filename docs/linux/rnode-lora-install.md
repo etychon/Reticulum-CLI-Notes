@@ -15,6 +15,19 @@
 
 USB permissions and cable issues: [rnode-usb.md](rnode-usb.md).
 
+**Diagrams:** [visual index](../concepts/visual-index.md)
+
+```mermaid
+flowchart LR
+  Host[Linux host rnsd]
+  USB[USB serial port]
+  RNode[RNode MCU and LoRa radio]
+  RF[LoRa RF to peers]
+  Host --> USB --> RNode --> RF
+```
+
+**Figure: host to air interface path**
+
 ## 1. Prerequisites
 
 - Reticulum venv with **`rns`** on `PATH` (see [new-node-setup.md §1](../guides/new-node-setup.md#1-install-the-stack)).
@@ -219,6 +232,7 @@ Confirm the RNode interface appears and shows traffic when the mesh is active.
 
 ## See also
 
+- [Visual index](../concepts/visual-index.md)
 - [rnode-usb.md](rnode-usb.md) — USB discovery and permissions
 - [interfaces.md](../config/interfaces.md) — interface recipes index
 - [mesh-cli-examples.md](../guides/mesh-cli-examples.md) — LoRa path/probe examples

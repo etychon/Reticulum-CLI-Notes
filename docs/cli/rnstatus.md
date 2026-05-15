@@ -6,6 +6,19 @@
 
 `rnstatus` queries the **shared local RNS instance** and prints interface status, traffic, and related statistics.
 
+**Diagrams:** [visual index](../concepts/visual-index.md)
+
+```mermaid
+flowchart LR
+  You[operator]
+  Rnstatus[rnstatus]
+  Rnsd[rnsd shared instance]
+  Stats[interface stats probe line if transport]
+  You --> Rnstatus --> Rnsd --> Stats
+```
+
+**Figure: rnstatus reads local daemon state, not remote routing tables**
+
 ## Prerequisites
 
 A running shared instance (typically from `rnsd` or another program that initialized Reticulum with `share_instance = Yes`). If nothing is running, you will see the error in the sample below.

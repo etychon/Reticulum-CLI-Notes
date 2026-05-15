@@ -7,6 +7,7 @@ This file tracks **pain that new Linux operators hit** and what **this repositor
 | Gap | What would help | This repo’s role |
 |-----|-------------------|------------------|
 | No single beginner quick-start on Linux | Distro-specific install + first config + first `rnsd` + `rnstatus` | [new-node-setup.md](guides/new-node-setup.md) + [README](../README.md) + [paths-and-example.md](config/paths-and-example.md) + CLI pages |
+| Upstream “Understanding” is dense for operators | Reactive paths vs announces, LoRa airtime, CLI mapping | [routing-paths-and-announces.md](concepts/routing-paths-and-announces.md) + [visual-index.md](concepts/visual-index.md) |
 | Docs assume protocol depth | Tiered “day 0 / day 7 / developer” handbooks | We stay **operator tier**; link manual for depth |
 | Historical issues / discussion hard to find | Curated archives or mirrors (verify URLs before linking) | [ecosystem.md](ecosystem.md) pointers only; no full mirror here |
 | Config portability across implementations | Clear TOML vs legacy syntax story + conversion tooling | [config-format-portability.md](config/config-format-portability.md) |

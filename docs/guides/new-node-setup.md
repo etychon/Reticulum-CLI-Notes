@@ -4,6 +4,26 @@
 
 This page is an **operator checklist**: install Reticulum, create storage and **identity**, enable **interfaces**, run **`rnsd`**, then layer **rnprobe**, **`rnsh` / `rnx` / `rncp`**, and **Nomad Network** where you need them.
 
+**Diagrams:** [visual index](../concepts/visual-index.md)
+
+```mermaid
+flowchart TD
+  Install[Install rns and lxmf venv]
+  Path[Add venv bin to PATH]
+  Config[Create config and interfaces]
+  Identity[Create identity file]
+  Rnsd[Run rnsd]
+  Announce[Announce destinations rnid -a or apps]
+  Probe[rnprobe from peer]
+  Apps[Optional rnsh rncp Nomad]
+  Install --> Path --> Config --> Identity --> Rnsd
+  Rnsd --> Announce
+  Rnsd --> Apps
+  Announce --> Probe
+```
+
+**Figure: new node setup flow** — probes and apps assume `rnsd` is running and interfaces match your peers.
+
 ## 1. Install the stack
 
 ```bash
@@ -172,6 +192,8 @@ rnstatus
 If you see `No shared RNS instance available`, `rnsd` is not running or a different `--config` was used. See [rnstatus.md](../cli/rnstatus.md).
 
 ## 5. Announces and probes (`rnprobe`)
+
+For how **paths are learned on demand** (path requests) versus **announces** (periodic presence), read [routing-paths-and-announces.md](../concepts/routing-paths-and-announces.md) before debugging timeouts.
 
 `rnprobe` checks **reachability to one specific destination** on a remote node. It is **not** a generic “ping the identity” tool. This section is a **step-by-step** path for new operators.
 
@@ -425,6 +447,21 @@ Expected output shape (versions may differ): [pip-install-lxmf-rpi-example.txt](
 
 `rnprobe` can fail in two different stages. Read the message carefully:
 
+```mermaid
+flowchart TD
+  Start[rnprobe failed]
+  Msg{Which message?}
+  PathTO[Path request timed out]
+  ProbeTO[Probe timed out]
+  FixPath[Check interfaces announces hash rnpath -t]
+  FixProbe[Check probe hash rnstatus -v on target transport and respond_to_probes]
+  Start --> Msg
+  Msg -->|path request| PathTO --> FixPath
+  Msg -->|probe| ProbeTO --> FixProbe
+```
+
+**Figure: rnprobe troubleshooting decision tree**
+
 | Message | Meaning |
 |---------|---------|
 | `Path request timed out` | The mesh has **no route** to that destination hash yet (interfaces, announces, wrong hash). |
@@ -549,7 +586,9 @@ Worked example with RSSI/SNR: [mesh-cli-examples.md](mesh-cli-examples.md).
 
 ## See also
 
+- [Visual index](../concepts/visual-index.md)
 - [README — quick path](../../README.md)
+- [Routing: paths, announces, and reactive reachability](../concepts/routing-paths-and-announces.md)
 - [Destinations, listeners, and announces](../concepts/destinations-announces-listeners.md)
 - [Mesh CLI worked examples (LoRa lab)](mesh-cli-examples.md)
 - [rnid.md](../cli/rnid.md), [rnsd.md](../cli/rnsd.md), [rnstatus.md](../cli/rnstatus.md), [rnprobe.md](../cli/rnprobe.md), [rnsh.md](../cli/rnsh.md), [rnx.md](../cli/rnx.md), [rncp.md](../cli/rncp.md)

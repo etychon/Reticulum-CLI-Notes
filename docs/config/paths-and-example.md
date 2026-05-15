@@ -2,6 +2,23 @@
 
 **Version note:** Directory behavior is described in the upstream manual; example snippet head from `rnsd --exampleconfig` **1.2.5**.
 
+**Diagrams:** [visual index](../concepts/visual-index.md)
+
+```mermaid
+flowchart TB
+  Apps[CLI and applications]
+  RNS[RNS library shared instance]
+  Rnsd[rnsd process]
+  Config[config file and storage]
+  Ifaces[TCP UDP LoRa RNode interfaces]
+  Apps --> RNS
+  Rnsd --> RNS
+  Rnsd --> Config
+  RNS --> Ifaces
+```
+
+**Figure: one config directory, one daemon, many clients**
+
 ## Search order
 
 Reticulum looks for its configuration directory in this order (first match wins):
@@ -38,6 +55,7 @@ Do **not** blindly overwrite your live `config` file; merge sections you need.
 
 ## See also
 
+- [Visual index](../concepts/visual-index.md)
 - [New node setup](../guides/new-node-setup.md)
 - [interfaces.md](interfaces.md)
 - [config-format-portability.md](config-format-portability.md)
