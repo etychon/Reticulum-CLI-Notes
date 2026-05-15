@@ -12,7 +12,9 @@ See the verbatim upstream block in [samples/config/tcp-client-interface-snippet-
 
 ### RNode / LoRa (template)
 
-See [samples/config/rnode-interface-snippet-rns-1.2.5.txt](../../samples/config/rnode-interface-snippet-rns-1.2.5.txt). Adjust `port`, `frequency`, spreading factor, bandwidth, and `txpower` for your hardware and jurisdiction.
+See [samples/config/rnode-interface-snippet-rns-1.2.5.txt](../../samples/config/rnode-interface-snippet-rns-1.2.5.txt) (minimal upstream-style snippet).
+
+**Full install path (USB, firmware, EU868-style lab block):** [rnode-lora-install.md](../linux/rnode-lora-install.md) and [rnode-lora-interface-eu868-example.txt](../../samples/config/rnode-lora-interface-eu868-example.txt).
 
 The [FOSDEM 2026 slides](https://fosdem.org/2026/events/attachments/9NCWUR-reticulum_community_meetup_implementations_migration_and_future/slides/267005/reticulum_dimz1j8.pdf) show an **EU868** example (`864.2 MHz`, SF10, etc.) for a conference mesh; treat that as a **lab/event** reference, not a universal preset.
 
@@ -22,7 +24,7 @@ Other daemons may require **strict TOML** (`true` / `false`, `[[interfaces]]` ta
 
 ## USB path on Linux
 
-If you use USB serial, see [rnode-usb.md](../linux/rnode-usb.md).
+If you use USB serial, see [rnode-usb.md](../linux/rnode-usb.md). For LoRa RNode firmware and config, see [rnode-lora-install.md](../linux/rnode-lora-install.md).
 
 ## See also
 

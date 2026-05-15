@@ -1,0 +1,16 @@
+# Example: install LXMF into the same venv as RNS (Raspberry Pi, Python 3.13).
+# Command from home directory: ~/.venvs/reticulum/bin/pip install lxmf
+# (or: .venvs/reticulum/bin/pip install lxmf)
+
+operator@rpi-reticulum-2:~ $ ~/.venvs/reticulum/bin/pip install lxmf
+Looking in indexes: https://pypi.org/simple, https://www.piwheels.org/simple
+Collecting lxmf
+  Downloading lxmf-0.9.8-py3-none-any.whl.metadata (12 kB)
+Requirement already satisfied: rns>=1.2.5 in ./.venvs/reticulum/lib/python3.13/site-packages (from lxmf) (1.2.6)
+Requirement already satisfied: cryptography>=3.4.7 in ./.venvs/reticulum/lib/python3.13/site-packages (from rns>=1.2.5->lxmf) (48.0.0)
+Requirement already satisfied: pyserial>=3.5 in ./.venvs/reticulum/lib/python3.13/site-packages (from rns>=1.2.5->lxmf) (3.5)
+Requirement already satisfied: cffi>=2.0.0 in ./.venvs/reticulum/lib/python3.13/site-packages (from cryptography>=3.4.7->rns>=1.2.5->lxmf) (2.0.0)
+Requirement already satisfied: pycparser in ./.venvs/reticulum/lib/python3.13/site-packages (from cffi>=2.0.0->cryptography>=3.4.7->rns>=1.2.5->lxmf) (3.0)
+Downloading lxmf-0.9.8-py3-none-any.whl (63 kB)
+Installing collected packages: lxmf
+Successfully installed lxmf-0.9.8

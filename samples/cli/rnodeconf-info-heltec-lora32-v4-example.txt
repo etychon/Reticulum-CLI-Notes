@@ -1,0 +1,23 @@
+# Example: rnodeconf device info (verification). RNS / rnodeconf on Raspberry Pi.
+# Command: ~/.venvs/reticulum/bin/rnodeconf -i /dev/ttyACM0
+# Run with rnsd STOPPED so the serial port is not in use. Prefer /dev/serial/by-id/... in production.
+
+operator@rpi-reticulum-2:~ $ ~/.venvs/reticulum/bin/rnodeconf -i /dev/ttyACM0
+[10:41:43] Opening serial port /dev/ttyACM0...
+[10:41:46] Device connected
+[10:41:46] Current firmware version: 1.86
+[10:41:46] Reading EEPROM...
+[10:41:47] EEPROM checksum correct
+[10:41:47] Device signature validated
+[10:41:47]
+[10:41:47] Device info:
+[10:41:47]      Product            : Heltec LoRa32 v4 850 - 950 MHz (c3:c8:3f)
+[10:41:47]      Device signature   : Validated - Local signature
+[10:41:47]      Firmware version   : 1.86
+[10:41:47]      Hardware revision  : 1
+[10:41:47]      Serial number      : 00:00:00:01
+[10:41:47]      Modem chip         : SX1262
+[10:41:47]      Frequency range    : 860.0 MHz - 930.0 MHz
+[10:41:47]      Max TX power       : 28 dBm
+[10:41:47]      Manufactured       : 2026-05-15 10:40:20
+[10:41:47]      Device mode        : Normal (host-controlled)

@@ -1,0 +1,12 @@
+# Snippet for ~/.reticulum/config — [reticulum] section only.
+# Required together for the built-in rnprobe responder (Transport Instance).
+
+[reticulum]
+enable_transport = Yes
+respond_to_probes = Yes
+
+# After restart, rnsd -v should show:
+#   Transport instance <…> started
+#   Transport Instance will respond to probe requests on <rnstransport.probe…>
+# And rnstatus -v should show:
+#   Probe responder at <hash> active

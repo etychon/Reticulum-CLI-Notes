@@ -18,6 +18,8 @@ For multi-command lab logs (identity, paths, probe, `rnsh`), use descriptive nam
 
 `mesh-lab-rnid-rnpath-rnprobe-rnsh-transcript.txt`
 
+`rnodeconf-info-heltec-lora32-v4-example.txt`
+
 ## Regeneration
 
 From a venv with `rns` installed:

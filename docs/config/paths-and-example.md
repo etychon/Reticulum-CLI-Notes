@@ -17,9 +17,13 @@ Override with `rnsd --config /path/to/dir` (and the same `--config` on `rnstatus
 The canonical way to see **all** supported directives and comments:
 
 ```bash
+# rnsd must be on PATH, or use the full path to your venv, e.g.:
+# ~/.venvs/reticulum/bin/rnsd --exampleconfig > ~/.reticulum/config.new
 rnsd --exampleconfig > /tmp/reticulum.example.conf
 less /tmp/reticulum.example.conf
 ```
+
+If you see `command not found`, add the venv `bin` directory to `PATH` first—see [new-node-setup.md §1](../guides/new-node-setup.md#1-install-the-stack).
 
 Do **not** blindly overwrite your live `config` file; merge sections you need.
 

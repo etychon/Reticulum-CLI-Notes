@@ -51,13 +51,13 @@ See [rnpath.md](../cli/rnpath.md).
 
 ## Probe a responder (`rnprobe`)
 
-`rnprobe` accepts either a **raw destination hash** or a **full destination name** plus hash (see `rnprobe --help`). For the built-in **probe** aspect, the name form looks like:
+`rnprobe` always needs **two** positional arguments: a **full destination name** in dotted notation, and a **destination hash** (see `rnprobe --help`). The usual connectivity test uses the built-in transport probe name:
 
 ```bash
 rnprobe rnstransport.probe 28a479e075763f02c03522a5f95b7a08
 ```
 
-Here `28a479e075763f02c03522a5f95b7a08` is **Chris’ probe responder** hash from the cheat sheet. Multiple probes:
+Here `28a479e075763f02c03522a5f95b7a08` is **Chris’ probe responder** hash from the cheat sheet—not his identity hash and not his `rnsh` hash. Multiple probes:
 
 ```bash
 rnprobe rnstransport.probe 28a479e075763f02c03522a5f95b7a08 -n 10
@@ -70,9 +70,62 @@ Valid reply from <28a479e075763f02c03522a5f95b7a08>
 Round-trip time is 930.411 milliseconds over 1 hop [RSSI -26 dBm] [SNR 12.75 dB] [Link Quality 100.0%]
 ```
 
-Pick the responder hash from **`rnstatus -v`** on the peer when you are unsure which hash answers probes.
+### Why `rnstransport.probe` is not a hostname (DNS mental model)
 
-See [rnprobe.md](../cli/rnprobe.md).
+If you are used to IP networks, it is easy to read `rnstransport.probe` as something like `probe.example.com`—a name that **resolves** to an address. Reticulum does **not** work that way.
+
+| IP / DNS habit | Reticulum equivalent |
+|----------------|----------------------|
+| Hostname → DNS → IP address | **No global DNS.** The mesh routes on a **destination hash** (16 bytes, shown as 32 hex digits). |
+| `ping 192.0.2.1` (one address per host) | **Many destinations per node**—identity, transport probe, `rnsh`, LXMF, apps—each with its **own** hash. |
+| One “machine” ≈ one IP | One **identity** can own **many** destinations; probing the wrong hash hits the wrong “socket,” not “the node” in general. |
+
+The string `rnstransport.probe` is a **developer label**, not an address the network looks up. Reticulum splits it on dots into:
+
+- **`rnstransport`** — **application name** (`app_name`). The reference stack hard-codes this for the Transport Instance (`APP_NAME = "rnstransport"` in `RNS/Transport.py`).
+- **`probe`** — **aspect** (a sub-destination under that app). When `respond_to_probes = Yes` and transport is running, `rnsd` registers an incoming listener at `app_name` + aspect `"probe"`.
+
+Together, `rnstransport.probe` means: “talk to the **probe responder service** that ships with the transport layer,” not “the human name of the radio” or “the operator’s identity.”
+
+On the wire, packets are addressed to the **hash** you pass as the second argument. The dotted name tells `rnprobe` **which encrypted destination object to build** on your side (app + aspects + the remote public key recalled from that hash). The [Reticulum manual — Understanding](https://reticulum.network/manual/understanding.html) describes destinations as hashed from `app_name`, aspects, and identity; see also [destinations-announces-listeners.md](../concepts/destinations-announces-listeners.md).
+
+### How to use the name and hash together
+
+1. **On the node that should answer:** enable `enable_transport = Yes` and `respond_to_probes = Yes` in `[reticulum]`, restart `rnsd`, then run `rnstatus -v` and copy **`Probe responder at <hash> active`**. That hash is the only one that matches `rnstransport.probe` on that machine.
+2. **On the initiator:** with `rnsd` running and a path over your interfaces, run:
+
+   ```bash
+   rnprobe rnstransport.probe <hash_from_rnstatus>
+   ```
+
+3. **Optional check:** `rnid -i <identityfile> -H rnstransport.probe` can derive the hash from the same dotted name on a given identity file. If it disagrees with **`rnstatus` on the machine where `rnsd` listens**, trust **`rnstatus`** (that is the live probe responder).
+
+For this **built-in** probe, the **name is fixed** by the implementation: always `rnstransport.probe`. You do not invent a custom probe hostname; you only copy the **hash** from the peer you want to test.
+
+### What goes wrong if the name or hash is wrong
+
+`rnprobe` uses the **hash** for path discovery (`Transport.request_path`) and the **name** to construct the outbound `SINGLE` destination that encrypts probe packets. Both must match the service you intend.
+
+| Mistake | Typical symptom | Why |
+|---------|-----------------|-----|
+| Wrong or unknown **hash** (no path yet) | `Path request timed out` | The mesh has no route to that destination. |
+| **Hash** reachable but not a probe listener (e.g. identity or `rnsh` hash with `rnstransport.probe`) | `Probe timed out` | Path may exist, but nothing at that hash accepts transport probe traffic. |
+| Wrong **name** (e.g. `rnsh.shell` + probe hash) | Often `Probe timed out` | Packets may still route to the hash, but the initiator builds the wrong destination type/aspects for that listener. |
+| Target has no probe responder (`respond_to_probes = No` or `enable_transport = No`) | No `Probe responder at …` in `rnstatus -v`; remote `rnprobe` times out | The `rnstransport.probe` destination was never registered on that node. |
+
+Examples that **fail** on the lab mesh (Chris’ probe hash is `28a479e075763f02c03522a5f95b7a08`):
+
+```bash
+# Identity hash — not the probe responder
+rnprobe rnstransport.probe 9839c928768eca38683eb556e72e854e
+
+# rnsh destination — different app/aspect entirely
+rnprobe rnstransport.probe 5e2b1e3934cc6af561124087ef6faaca
+```
+
+To test **`rnsh`**, the peer runs `rnsh -l …` and you use **that** destination’s hash and the aspect name `rnsh` documents—not `rnstransport.probe` unless you mean the transport probe.
+
+Full setup and troubleshooting: [new-node-setup.md §5](new-node-setup.md#5-announces-and-probes-rnprobe) and [§ `rnprobe` always times out](new-node-setup.md#rnprobe-always-times-out). CLI reference: [rnprobe.md](../cli/rnprobe.md).
 
 ## `rnsh` listen (lab only: `--no-auth`)
 

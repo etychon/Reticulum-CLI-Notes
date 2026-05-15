@@ -10,6 +10,7 @@
 
 - A valid Reticulum config directory (see [paths-and-example.md](../config/paths-and-example.md)).
 - Write access to the config and storage paths configured for that instance.
+- If `discover_interfaces = Yes` in config, **`lxmf`** must be installed in the same Python environment (`pip install lxmf`). See [new-node-setup.md](../guides/new-node-setup.md) §2 and §4.
 
 ## Example
 

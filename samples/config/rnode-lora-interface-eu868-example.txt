@@ -1,0 +1,14 @@
+# Example RNode LoRa interface block for ~/.reticulum/config (Python RNS / configobj).
+# Replace port with YOUR stable by-id path: ls -l /dev/serial/by-id/
+# RF parameters must match your band, hardware, and local regulations.
+
+  [[RNode LoRa Interface]]
+    type = RNodeInterface
+    enabled = yes
+    port = /dev/serial/by-id/usb-Espressif_USB_JTAG_serial_debug_unit_XXXX-if00
+    frequency = 869525000
+    bandwidth = 125000
+    txpower = 14
+    spreadingfactor = 8
+    codingrate = 5
+    flow_control = False

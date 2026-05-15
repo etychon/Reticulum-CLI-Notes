@@ -46,8 +46,11 @@ Use a **data** USB cable. Charge-only cables cause mysterious “device never sh
 
 In your Reticulum config, RNode-style interfaces use a `port` (or equivalent) setting pointing at the device path. See [interfaces.md](../config/interfaces.md) and [samples/config/](../../samples/config/).
 
+For **firmware install**, **LoRa parameters**, and a full **`[[RNode LoRa Interface]]`** example, see [rnode-lora-install.md](rnode-lora-install.md).
+
 ## See also
 
+- [Install LoRa RNode](rnode-lora-install.md)
 - [Reticulum manual — interfaces](https://reticulum.network/manual/interfaces.html)
 - [unsigned.io guides](https://unsigned.io/guides/) (RNode material referenced from n00q)
 - [FOSDEM 2026 slides — LoRa snippet / EU868 table](https://fosdem.org/2026/events/attachments/9NCWUR-reticulum_community_meetup_implementations_migration_and_future/slides/267005/reticulum_dimz1j8.pdf) (illustrative RF parameters only)

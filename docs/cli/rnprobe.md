@@ -4,18 +4,24 @@
 
 ## Synopsis
 
-`rnprobe` sends probe traffic to a destination (by full name or destination hash) to measure reachability and latency characteristics.
+`rnprobe` sends probe traffic to a **specific destination** (application name + aspects + hash) to measure reachability and latency. Each application on a node has a **different** destination hash; probing the wrong hash or a hash with **no listener** times out.
 
 ## Prerequisites
 
-Working path / reachability to the destination; shared RNS instance running with appropriate interfaces.
+- Shared RNS instance (`rnsd`) on the initiator with a path to the target hash.
+- On the **target**: the **Transport Instance** running with **`enable_transport = Yes`** and **`respond_to_probes = Yes`** in `[reticulum]` (both required; see [new-node-setup.md §5](../guides/new-node-setup.md#5-announces-and-probes-rnprobe)).
+- **Both** CLI arguments: full destination name **and** hash (see examples).
 
 ## Example
 
+Transport probe (most common connectivity test):
+
 ```bash
-rnprobe <destination_hash>
-rnprobe example.dummy.destination <hash>
+rnprobe rnstransport.probe <probe_responder_destination_hash>
+rnprobe rnstransport.probe 28a479e075763f02c03522a5f95b7a08 -n 10 -t 30
 ```
+
+Find the probe responder hash on the target with `rnstatus -v` (**Probe responder at … active**).
 
 ## Sample output
 
@@ -25,7 +31,9 @@ Capture a real probe transcript separately; probes generate traffic—use only o
 
 ## Troubleshooting
 
-- **No response:** Confirm destination hash, outbound interfaces, and firewall rules for TCP/UDP transport where applicable.
+- **`Path request timed out`:** No route yet—interfaces, announces, or wrong hash.
+- **`Probe timed out`:** Path OK but wrong hash/aspect, target not listening, or `respond_to_probes = No`.
+- Full checklist and wrong-vs-right commands: [new-node-setup.md § `rnprobe` always times out](../guides/new-node-setup.md#rnprobe-always-times-out).
 
 ## See also
 

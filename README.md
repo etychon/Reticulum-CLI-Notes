@@ -29,7 +29,7 @@ Licensing and upstream distribution channels have evolved. Some community builds
 |------|----------|
 | [docs/concepts/](docs/concepts/) | Behaviour notes (destinations, announces, …) |
 | [docs/guides/](docs/guides/) | End-to-end operator flows (new node, mesh CLI examples, …) |
-| [docs/linux/](docs/linux/) | Serial/USB RNode, permissions, systemd hints |
+| [docs/linux/](docs/linux/) | Serial/USB RNode, [LoRa RNode install](docs/linux/rnode-lora-install.md), permissions, systemd hints |
 | [docs/cli/](docs/cli/) | One page per CLI tool, linked to `samples/cli/` |
 | [docs/config/](docs/config/) | Config paths, example config, interface recipes, TOML notes |
 | [docs/ecosystem.md](docs/ecosystem.md) | Pointers to apps and alternate implementations |
@@ -52,7 +52,7 @@ Initial CLI help samples in this repo were captured from **RNS 1.2.5** on **Darw
 
 1. Follow **[docs/guides/new-node-setup.md](docs/guides/new-node-setup.md)** (install, identity, `rnsd`, probes, `rnsh` / `rnx` / `rncp`, Nomad Network, systemd, troubleshooting).
 2. Read [docs/config/paths-and-example.md](docs/config/paths-and-example.md) if you need config search order and `rnsd --exampleconfig`.
-3. If you use USB RNode: [docs/linux/rnode-usb.md](docs/linux/rnode-usb.md).
+3. If you use USB LoRa RNode: [docs/linux/rnode-lora-install.md](docs/linux/rnode-lora-install.md) (firmware + config); USB permissions: [docs/linux/rnode-usb.md](docs/linux/rnode-usb.md).
 4. Command reference: [docs/cli/](docs/cli/) (for example [rnsd](docs/cli/rnsd.md), [rnstatus](docs/cli/rnstatus.md), [rnid](docs/cli/rnid.md), [rncp](docs/cli/rncp.md)).
 5. How listening relates to announces: [docs/concepts/destinations-announces-listeners.md](docs/concepts/destinations-announces-listeners.md).
 6. LoRa lab walk-through (`rnid`, `rnpath`, `rnprobe`, `rnsh`): [docs/guides/mesh-cli-examples.md](docs/guides/mesh-cli-examples.md).
